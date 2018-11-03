@@ -34,14 +34,17 @@ type Product struct {
 	Info         string
 }
 type Customer struct {
-	Id    int
-	Name  string
-	Email string
-	Phone uint64
-	//Product       []*Product `orm:"rel(m2m)"` //多对多
-	CreateTime time.Time
-	Level      string
-	Birthday   string
+	Id          int
+	Name        string
+	Identify    string
+	Level       string
+	Course      string
+	Course_time time.Time
+	Agent_time  time.Time
+	Phone       string
+	Address     string
+	Birthday    time.Time
+	Info        string
 }
 
 type Cus_pro struct {
@@ -53,7 +56,7 @@ type Cus_pro struct {
 
 func init() {
 
-	orm.RegisterDataBase("default", "mysql", "solidbullet:Jyq810302@tcp(116.62.22.108:3306)/wsjxc?charset=utf8")
+	orm.RegisterDataBase("default", "mysql", "solidbullet:Jyq810302@tcp(116.62.22.108:3306)/wsjxc?charset=utf8&loc=Local")
 	orm.RegisterModel(new(User), new(Customer), new(Product), new(Cus_pro))
 	orm.RunSyncdb("default", false, true)
 }

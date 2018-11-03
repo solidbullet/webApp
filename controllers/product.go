@@ -55,8 +55,6 @@ func (c *ProductController) InserProduct() { //产品录入提交后进入此act
 		return
 	}
 	c.TplName = "index.tpl"
-	//c.Redirect("/index.tpl", 302)
-	//c.Ctx.WriteString("登陆成功")
 }
 
 func (c *ProductController) ProductManage() {
@@ -64,10 +62,6 @@ func (c *ProductController) ProductManage() {
 	o := orm.NewOrm()
 	var products []*models.Product
 	o.QueryTable("product").All(&products)
-
-	//c.Ctx.WriteString("展示成果")
-	//c.TplName = "index.tpl"
-	//c.Redirect("/index.tpl", 302)
 	c.Data["json"] = products
 	c.ServeJSON()
 }
@@ -109,11 +103,11 @@ func (c *ProductController) ProductUpdate() {
 	pro.Method = c.GetString("Method")
 	pro.Prize = c.GetString("Prize")
 	taste := c.GetString("Taste")
-	//beego.Info("Taste_begin: ", taste)
+
 	index := strings.Index(taste, ":") //去掉angularjs中ng-options的bug,会在前面加上string:
 	taste = taste[index+1:]
 	pro.Taste = taste
-	//beego.Info("Taste_end: ", taste)
+
 	pro.Standard = c.GetString("Standard")
 	pro.Unit = c.GetString("Unit")
 	pro.Info = c.GetString("Info")
@@ -133,49 +127,3 @@ func (c *ProductController) ProductUpdate() {
 	}
 	c.TplName = "product/productManage.tpl"
 }
-
-//	beego.Info("ddsds")
-
-//	c.Data["Website"] = "beego.me"
-//	c.Data["Email"] = "astaxie@gmail.com"
-//	c.TplName = "index.tpl"
-//	orm.Debug = true
-//	c := models.Customer{}
-
-//	cp := models.Cus_pro{}
-//	p := models.Product{}
-
-//	//p.Name = "ferment"
-//	p.Order_price = 198
-//	p.Discount = 0.8
-//	p.Min_num = 100
-//	p.Id = 1
-//	c.Id = 1
-//	c.Name = "liyuling"
-//	c.Phone = 13818571412
-//	c.CreateTime = time.Now()
-//	c.Birthday = "20181030"
-//	cp.Customer_num = c.Phone
-//	cp.Product_name = p.Name
-//o := orm.NewOrm()
-//	var cus_pro []*models.Cus_pro
-//	_, err := o.QueryTable("cus_pro").Filter("Customer_num", c.Phone).All(&cus_pro)
-
-//	if err == nil {
-//		for _, order := range cus_pro {
-
-//			beego.Info(order)
-//		}
-//	}
-//_, err := o.Insert(&cp)
-//o.Read(&cp, "Customer_num")
-//	if err != nil {
-//		beego.Info(err)
-//		return
-//	}
-//beego.Info(cp)
-//beego.Run()
-
-//	if _, err := o.Update(&obj); err == nil {
-//		beego.Info(obj)
-//	}

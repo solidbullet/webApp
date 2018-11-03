@@ -17,17 +17,18 @@
    <div class = "container">
       <h5><<<.User>>>,欢迎光临！</h5>
 	  <hr>
-	<a type="button" class="btn btn-primary" href="/customer/insert">客户录入</a>
+	<a type="button" class="btn btn-primary" href="/customer">客户录入</a>
 	<a type="button" class="btn btn-success" href="/product/insert">产品录入</a>
 	<a type="button" class="btn btn-info" href="/goods/insert">进货录入</a>
 
 	<hr>
 	<!-- 提供额外的视觉效果，标识一组按钮中的原始动作 -->
-	<button type="button" class="btn btn-primary">客户管理</button>
+	<a type="button" class="btn btn-warning" href="/customer/customersDisplay">客户管理</a>
+	<a type="button" class="btn btn-warning" href="/product/productShow">产品管理</a>
 	<!-- 表示一个成功的或积极的动作 -->
 	<button type="button" class="btn btn-success">库存管理</button>
 	<!-- 信息警告消息的上下文按钮 -->
-	<a type="button" class="btn btn-warning" href="/product/productShow">产品管理</a>
+	
 
 	
 	<!-- 表示应谨慎采取的动作 

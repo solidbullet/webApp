@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
    <head>
-      <title>产品录入</title>
+      <title>修改客户资料</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- 引入 Bootstrap -->
       <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -12,73 +12,73 @@
          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
       <![endif]-->
-
+	  <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script>
    </head>
-
    <body>
-   <div class = "container">
+   <div class = "container" ng-app="myApp" ng-controller="siteCtrl">
 		<div class="page-header">
-		  <form class="form-horizontal" role="form" method="post" action ="/customer/insert">
+		  <form class="form-horizontal" role="form" method="post" action ="/customer/update">
+		  <input name="Id" ng-model=data.Id ng-hide =true>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">姓名</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" name ="Name" id="Name" placeholder="姓名">
+				<input type="text" class="form-control" name ="Name" id="Name" ng-model=data.Name>
 				</div>
 			  </div>
 
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">职业</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" name ="Identify"  placeholder="职业">
+				<input type="text" class="form-control" name ="Identify"  ng-model=data.Identify>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">级别</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" name ="Level"  placeholder="级别">
+				<input type="text" class="form-control" name ="Level"   ng-model=data.Level>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">疗程</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" name ="Course"  placeholder="疗程">
+				<input type="text" class="form-control" name ="Course"   ng-model=data.Course>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">疗程开始时间</label>
 				<div class="col-sm-4">
-				<input type="date" class="form-control" name ="Course_time" id = "Course_time">
+				<input type="date" class="form-control" name ="Course_time"  ng-model=course_time>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">代理开始时间</label>
 				<div class="col-sm-4">
-				<input type="date" class="form-control" name="Agent_time"  id = "Agent_time" >
+				<input type="date" class="form-control" name="Agent_time"   ng-model=agent_time>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">电话</label>
 				<div class="col-sm-4">
-				<input type="tel" class="form-control" name="Phone"  placeholder="电话">
+				<input type="tel" class="form-control" name="Phone"   ng-model=data.Phone>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">收货地址</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" name="Address"  placeholder="收货地址">
+				<input type="text" class="form-control" name="Address"   ng-model=data.Address>
 				</div>
 			  </div>
 			  <div class="form-group">
 				<label class="col-sm-2" for="name">生日</label>
 				<div class="col-sm-4">
-				<input type="date" class="form-control" name="Birthday" id = "Birthday"  >
+				<input type="date" class="form-control" name="Birthday"  ng-model=birthday>
 				</div>
 			  </div>
 
 			   <div class="form-group">
 				<label class="col-sm-2" for="name">说明</label>
 				<div class="col-sm-4">
-				<textarea class="form-control" name="Info" id = "Info" rows="4"></textarea>
+				<textarea class="form-control" name="Info" ng-model=data.Info rows="4"></textarea>
 				</div>
 			  </div>
 			  
@@ -91,4 +91,18 @@
       <!-- 包括所有已编译的插件 -->
       <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
    </body>
+   <script>
+	var app = angular.module('myApp', []);
+	app.controller('siteCtrl', function($scope, $http,$filter) {
+	  url="http://127.0.0.1:8080/customer/getcustomerbyid?customerid=" + <<<.customerid>>>;
+	  $http.get(url)
+	  .success(function (response) {
+	  $scope.course_time = new Date(response.Course_time);
+	  $scope.agent_time = new Date(response.Agent_time);
+	  $scope.birthday = new Date(response.Birthday);
+	  console.log(response);
+	  $scope.data = response;
+	  });
+	});
+	</script>
 </html>
