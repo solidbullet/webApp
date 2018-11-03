@@ -40,6 +40,7 @@ func (c *ProductController) InserProduct() { //产品录入提交后进入此act
 	pro.Prize = c.GetString("Prize")
 	pro.Taste = c.GetString("Taste")
 	pro.Standard = c.GetString("Standard")
+	pro.Info = c.GetString("Info")
 	Order_price, _ := strconv.ParseFloat(c.GetString("Order_price"), 64)
 	Origin_price, _ := strconv.ParseFloat(c.GetString("Origin_price"), 64)
 	Min_num, _ := strconv.Atoi(c.GetString("Min_num"))
